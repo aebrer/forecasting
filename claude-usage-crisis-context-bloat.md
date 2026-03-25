@@ -44,7 +44,7 @@ The March 2026 wave of Reddit complaints about Claude burning through Pro/Max us
 Each prompt round-trips the entire context window. If a user lets context grow to 500k+ tokens, every subsequent prompt is re-sending all of it through the usage meter. 3 prompts × 500k context ≈ 1.5M tokens consumed — enough to drain a Pro quota.
 
 ### Our Own Usage
-In the same session where we read both full Reddit threads, discussed them, wrote files, initialized a git repo, and pushed to GitHub — we were at 8% usage on Opus 4.6 with a 1M context window. Context hygiene works.
+In the same session where we read both full Reddit threads, discussed them, wrote files, initialized a git repo, and pushed to GitHub — we were at 8% of a 5-hour usage window on the 5x Max plan, using Opus 4.6 with a 1M context window. Context hygiene works.
 
 ## Suspected Astroturfing
 
