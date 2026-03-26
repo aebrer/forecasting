@@ -58,12 +58,33 @@ In the same session where we read both full Reddit threads, discussed them, wrot
 
 If there *is* a genuine bug, it's most likely a caching bug — the 1M context expansion may have broken assumptions in how cached/pre-filled tokens are counted against usage. A system that previously cached 200k of context and only billed the delta might now be failing to cache entirely, re-billing the full window on each turn, or double-counting cached tokens. This would be consistent with the timing (correlates with the context window change) and the symptoms (sudden multiplier on usage without changed behavior). But even in this case, the users loading 100k+ token files are the ones who'd feel it most.
 
+## Update: 2026-03-26 — Anthropic Confirms Peak-Hour Throttling
+
+**Source:** [r/ClaudeCode — "Update on Session Limits"](https://www.reddit.com/r/ClaudeCode/comments/1jxunique/) by u/ClaudeOfficial (71 upvotes, 107 comments)
+
+Anthropic officially announced they are adjusting 5-hour session limits during peak hours (weekdays 5am–11am PT / 1pm–7pm GMT). Users burn through session limits faster during peak; weekly limits remain unchanged. They estimate ~7% of users will be affected.
+
+### What this means for the prediction
+
+**Still holds:**
+- Context bloat remains the best explanation for *why* some users drain limits in 1-3 prompts while others on the same plan are fine. The "control group" pattern persists in this thread too — users with good context hygiene report no issues.
+- Nobody complaining has posted session logs or token breakdowns.
+
+**Weakened:**
+- Anthropic is confirming a real, deliberate server-side change to rate limiting — it's not *purely* user-side context mismanagement.
+- Multiple commenters (and the timing) strongly suggest silent A/B testing was happening in the days before this announcement, which means some of the complaints we attributed to context bloat may have been genuine throttling.
+- Max subscribers ($200/mo) reporting full weekly limits drained in 1 prompt is hard to explain with context bloat alone, even with 1M windows.
+- Several users directly dispute Anthropic's "just peak hours, weekly unchanged" framing — u/RedEagle182: "The weekly limits were filled as quickly as the 5h session ones, so this is false." u/CreativetechDC: "Verified that weekly usage is also severely affected." If weekly limits are also being hit harder, the peak-hour redistribution explanation doesn't fully account for it.
+
+**Assessment:** The prediction was probably *partially right* — context bloat is a real amplifier and explains the variance between users — but it missed that Anthropic was also actively tightening the supply side. The caching bug caveat (line 59 of the original) was closer to the mark than the main thesis. Waiting for more dust to settle before calling it.
+
 ## How to Verify
 
-- If Anthropic clarifies, check whether explanation involves context/token accounting
-- If usage complaints fade as people learn context management, prediction confirmed
+- ~~If Anthropic clarifies, check whether explanation involves context/token accounting~~ — Clarification arrived, it's about peak-hour rate limiting, not token accounting. Partial miss.
+- If usage complaints fade as people learn context management, prediction partially confirmed (context bloat was real but not the whole story)
 - If complaints persist equally among users with good context hygiene, prediction wrong
+- Watch for whether the ~7% figure holds or if it's being downplayed
 
 ## Analogy
 
-Filling the bathtub to wash your hands.
+Filling the bathtub to wash your hands. *(Still true for the context bloat component — but turns out the water company was also turning down the pressure during peak hours.)*
