@@ -80,7 +80,7 @@ Anthropic officially announced they are adjusting 5-hour session limits during p
 
 ## Update: 2026-03-30 — Caching Bugs Confirmed via Reverse Engineering
 
-**Source:** [r/ClaudeAI — "PSA: Claude Code has two cache bugs that can silently 10-20x your API costs"](https://www.reddit.com/r/ClaudeAI/comments/1jx_placeholder/) by u/skibidi-toaleta-2137 (306 upvotes, 51 comments)
+**Source:** [r/ClaudeAI — "PSA: Claude Code has two cache bugs that can silently 10-20x your API costs"](https://www.reddit.com/r/ClaudeAI/comments/1s7mkn3/psa_claude_code_has_two_cache_bugs_that_can/) by u/skibidi-toaleta-2137 (306 upvotes, 51 comments)
 
 A user reverse-engineered the Claude Code standalone binary (Ghidra + MITM proxy) and found two independent caching bugs that silently inflate token usage:
 
