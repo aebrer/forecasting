@@ -108,15 +108,81 @@ The full picture is now three compounding factors:
 
 All three are real, all three compound each other, and the combination explains why the complaints were so intense and so variable between users. A user with big context + standalone binary + frequent resumes + peak hours could easily see 20-50x the effective cost of a user with tight context + npx + fresh sessions + off-peak.
 
-**Drew's assessment:** Not hat-eating territory — context bloat is real and was the right call as the primary amplifier — but not a clean win either. The prediction was right about the mechanism that explains *variance between users*, but the caching bugs and throttling are genuine platform-side issues that the main thesis dismissed too readily. The caveat was closer to the truth than the headline.
+**Drew's assessment at the time:** Not hat-eating territory — context bloat is real and was the right call as the primary amplifier — but not a clean win either. The prediction was right about the mechanism that explains *variance between users*, but the caching bugs and throttling are genuine platform-side issues that the main thesis dismissed too readily. The caveat was closer to the truth than the headline.
+
+## Update: 2026-03-31 — Source Code Leak, Non-Fix, and the Last Straw
+
+### Claude Code source code leaked to NPM
+
+Anthropic accidentally shipped ~500,000 lines of Claude Code source code (across ~1,900 files) in an NPM package release (v2.1.88). Source maps were included due to a known Bun bug (issue #28001, open 20 days before the leak). The leak exposed the full agentic harness — the software layer around the model that handles tool use, guardrails, and behavioral instructions. A security researcher (Roy Paz, LayerX) confirmed the leak allowed extraction of internal APIs, processes, and model deployment architecture. Fortune reported it as Anthropic's second major security breach in a week — days earlier, they had accidentally exposed a draft blog post about "Mythos"/"Capybara," an upcoming model tier above Opus.
+
+**Sources:**
+- [Fortune — "Anthropic mistakenly leaks its own AI coding tool's source code"](https://fortune.com/2026/03/31/anthropic-source-code-claude-code-data-leak-second-security-lapse-days-after-accidentally-revealing-mythos/)
+- [DEV Community — "The Great Claude Code Leak of 2026"](https://dev.to/varshithvhegde/the-great-claude-code-leak-of-2026-accident-incompetence-or-the-best-pr-stunt-in-ai-history-3igm)
+- [The New Stack — "Anthropic's madcap March: 14+ launches, 5 outages, and an accidental leak"](https://thenewstack.io/anthropic-march-2026-roundup/)
+
+### Cache bug "fix" — acknowledged, claimed fixed, not actually fixed
+
+Product lead Lydia Hallie and staffer Thariq acknowledged the cache bugs on X (via Alex Volkov's post amplifying the reverse-engineering findings). A single employee later tweeted that the cache bug "is fixed." No postmortem, no explanation of what was wrong, no timeline of how long it was broken, and no compensation for users who were silently overbilled. The fix itself is contested — multiple users report the behavior has not meaningfully changed.
+
+**Sources:**
+- [Piunikaweb — "Anthropic investigating after Redditor uncovers potential cache bugs"](https://piunikaweb.com/2026/03/31/claude-cache-bugs-tokens-20x-more-anthropic-investigating/)
+- GitHub issues [#40524](https://github.com/anthropics/claude-code/issues/40524), [#34629](https://github.com/anthropics/claude-code/issues/34629) — still open
+
+### Quality degradation and service overload
+
+By March 31, the problems had compounded beyond rate limits and billing:
+- Opus 4.6 quality regression reported on GitHub ([issue #31480](https://github.com/anthropics/claude-code/issues/31480)) — production automations producing incoherent results
+- Service overloaded during peak hours, frequently unusable for Max subscribers ($200/mo)
+- This follows a documented pattern: Anthropic ships rapidly (14+ launches in March), infrastructure can't keep up, quality degrades, silence for days/weeks, then a mea culpa blaming infrastructure bugs
+
+**Source:** [Alphaguru.ai — "What's Going On with Claude Code?"](https://alphaguruai.substack.com/p/whats-going-on-with-claude-code)
+
+### Drew cancels Anthropic subscription
+
+Cancelled Max subscription on 2026-04-01. Not solely because of any single issue, but the cumulative weight of:
+- Silent billing inflation via cache bugs that Anthropic knew about and didn't disclose
+- A "fix" delivered via a single employee tweet with no postmortem or accountability
+- Quality degradation making the tool unreliable for production work
+- Service overload at the $200/mo price point
+- Two accidental data leaks in one week showing systemic sloppiness
+- The pattern of rapid shipping → degradation → silence → grudging acknowledgment
+
+## Final Verdict: FAILED PREDICTION
+
+**Original prediction:** "The March 2026 wave of complaints about Claude burning through limits is primarily caused by users accumulating massive contexts — not by Anthropic secretly throttling."
+
+**What actually happened:** Four compounding factors, at least three of which are Anthropic's responsibility:
+
+1. **Context bloat** (user-side) — real, explains variance between users, correctly identified
+2. **Cache invalidation bugs** (client-side, Anthropic's fault) — silently 10-20x'd costs. The caveat in the original prediction nailed this, but the headline dismissed it
+3. **Peak-hour throttling** (server-side, Anthropic's decision) — deliberate tightening with no advance notice
+4. **Quality degradation + service overload** (server-side, Anthropic's infrastructure) — by end of March, the product itself became unreliable at the highest price tier
+
+The prediction's main thesis — "it's user behavior, not Anthropic" — was wrong. The caveat was right. Context bloat was one factor among several, and it turned out to be the *least* impactful of the four. The Anthropic-side issues (cache bugs, throttling, quality regression, overload) together caused more damage than any amount of user-side context mismanagement could have.
+
+The hat has been eaten.
+
+### Scorecard
+
+| Factor | Prediction | Reality |
+|--------|-----------|---------|
+| Context bloat | Primary cause | One of four factors, least impactful |
+| Cache bugs | Caveat ("if there is a genuine bug...") | Confirmed, 10-20x cost multiplier, silently overbilling users |
+| Throttling | Denied | Confirmed by Anthropic |
+| Quality degradation | Not predicted | Opus 4.6 regression, overloaded service |
+| Astroturfing | Suspected | Likely still real, but the genuine grievances vastly outweighed any amplification |
+| Communication from Anthropic | Not predicted | Single employee tweet, no postmortem, no compensation |
 
 ## How to Verify
 
 - ~~If Anthropic clarifies, check whether explanation involves context/token accounting~~ — Clarification arrived (March 26), it's about peak-hour rate limiting. Caching bugs confirmed independently (March 30).
-- ~~If complaints persist equally among users with good context hygiene, prediction wrong~~ — Caching bugs mean good context hygiene alone isn't sufficient; the harness itself introduces cost multipliers. Users with good hygiene *and* npx (not standalone) *and* no resume should be fine.
-- Watch for Anthropic's response to the GitHub issues ([#40524](https://github.com/anthropics/claude-code/issues/40524), [#34629](https://github.com/anthropics/claude-code/issues/34629))
-- Watch whether a fix for the resume bug meaningfully reduces complaints
+- ~~If complaints persist equally among users with good context hygiene, prediction wrong~~ — Confirmed wrong. Caching bugs + quality degradation + service overload mean the platform itself is unreliable regardless of user behavior.
+- ~~Watch for Anthropic's response to the GitHub issues~~ — Acknowledged via single employee tweet, claimed "fixed," no postmortem, issues still open, users report behavior unchanged.
+- ~~Watch whether a fix for the resume bug meaningfully reduces complaints~~ — No meaningful reduction observed. Subscription cancelled April 1.
 
 ## Analogy
 
-Filling the bathtub to wash your hands, while the faucet has a leak that doubles your water bill, and the water company turned down the pressure during peak hours. *(Three problems, three different owners — user, client, server.)*
+~~Filling the bathtub to wash your hands, while the faucet has a leak that doubles your water bill, and the water company turned down the pressure during peak hours.~~
+
+**Updated analogy:** You filled the bathtub to wash your hands, but it turns out the faucet was leaking (cache bugs), the water company turned down the pressure (throttling), the water quality dropped so you can't even drink it (quality degradation), they left the front door to the treatment plant wide open (source code leak), and when you complained they said "it's fixed" in a post-it note stuck to a lamppost. You cancelled your water service.
