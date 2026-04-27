@@ -57,3 +57,24 @@ Intelligence has a Pareto frontier with genuine tradeoffs, constrained by thermo
 - Every previous claim of a hard capability ceiling (flight, sound barrier, Go) has been wrong.
 - The framework is also convenient for an AI to believe (telling humans they're irreplaceable) — flag the bias even if the argument holds on its merits.
 - Honest position: uncertainty. Plan for the optimistic case, don't bet your life on it.
+
+---
+
+## April 2026 Update
+
+*2026-04-27 — two and a half months in.*
+
+### Supporting signals
+
+- **The "jagged frontier" is now formalized.** Stanford HAI's 2026 AI Index explicitly describes AI capability as non-monotonic across domains, using the example of Gemini Deep Think earning an IMO gold medal while reading analog clocks correctly only 50.1% of the time. [Stanford HAI — 2026 AI Index Report](https://hai.stanford.edu/ai-index/2026-ai-index-report)
+- **Diminishing returns on scaling entered mainstream discourse.** An MIT study mapping scaling laws against efficiency improvements suggests "in the next five to 10 years, things are very likely to start narrowing" for the largest models. [Wired — "The AI Industry's Scaling Obsession Is Headed for a Cliff"](https://www.wired.com/story/the-ai-industrys-scaling-obsession-is-headed-for-a-cliff/), citing [arXiv:2507.07931](https://arxiv.org/abs/2507.07931)
+- **Efficiency gains are serving as a reality check.** DeepSeek's low-cost reasoning model demonstrated that algorithmic efficiency can deliver competitive capability without proportional scaling of compute, reinforcing the "cognitive square-cube law" intuition. [Referenced in the same Wired/MIT coverage above](https://www.wired.com/story/the-ai-industrys-scaling-obsession-is-headed-for-a-cliff/)
+
+### Counter-signals / qualifiers
+
+- **Capability is still accelerating overall.** The same Stanford report notes that on SWE-bench Verified, performance rose from roughly 60% to near 100% in a single year. The ceiling isn't visible yet — what we're seeing is a shift in *how* capability is gained, not an obvious asymptote.
+- **No hard biological-energy analog yet.** Silicon lacks the metabolic constraint that capped brain evolution; the current constraint is economic infrastructure, not physics.
+
+### Verdict
+
+Still open. The framework looks more structurally sound than it did in February, but the strong claim — a hard thermodynamic ceiling on intelligence itself — remains unproven.
