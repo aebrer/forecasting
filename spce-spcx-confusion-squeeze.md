@@ -2,6 +2,8 @@
 
 *Drew wargaming with Kimi 2.6 (+ GPT-5.5 independent assessor), 2026-06-04*
 
+**Disclaimer: This is not financial advice. I am not a financial advisor. This document is for entertainment and accountability purposes only.**
+
 ## Core Thesis
 
 On June 12, 2026 — the day SpaceX (SPCX) begins trading — Virgin Galactic (SPCE) will experience a short squeeze and/or retail confusion spike of **>500% from its June 4, 2026 closing price**. The stock will open elevated, spike violently in the first 1–2 hours of trading, and collapse back down by end-of-day or within 48 hours.
