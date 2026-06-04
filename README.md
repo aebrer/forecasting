@@ -14,8 +14,10 @@ Git history is the timestamp. Public repo is the accountability.
 |-----------|------|---------|
 | [ASI Pareto Ceiling](asi-pareto-ceiling.md) | 2026-02-15 | Open |
 | [Claude Usage "Crisis" is Context Window Misuse](claude-usage-crisis-context-bloat.md) | 2026-03-25 | ❌ **Failed** — Hat eaten. Context bloat was real but one factor among four; Anthropic-side issues (cache bugs, throttling, quality degradation) caused more damage. Subscription cancelled 2026-04-01. |
+| [SPCE Ticker Confusion Squeeze >500%](spce-spcx-confusion-squeeze.md) | 2026-06-04 | Open — Resolves June 12, 2026 |
 
 ## Contents
 
 - **[ASI Pareto Ceiling](asi-pareto-ceiling.md)** — Intelligence has a Pareto frontier with real tradeoffs. ASI won't be better than humans at everything; it'll occupy a different optimal point on the same curve. (2026-02-15)
 - **[Claude Usage "Crisis"](claude-usage-crisis-context-bloat.md)** — The March 2026 wave of Claude usage complaints is context window misuse, not throttling. Hat-eating stakes. ❌ **Failed** (2026-03-25, resolved 2026-04-01)
+- **[SPCE Ticker Confusion Squeeze >500%](spce-spcx-confusion-squeeze.md)** — On the day SpaceX (SPCX) goes public, Virgin Galactic (SPCE) squeezes >500% from confused retail and/or short covering. Not trading it, just keeping receipts. (2026-06-04, resolves 2026-06-12)
