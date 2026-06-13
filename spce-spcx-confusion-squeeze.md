@@ -66,6 +66,23 @@ Despite the thesis, I'm walking away:
 
 ---
 
-## June 2026 Update
+## June 13, 2026 Resolution
 
-*TBD — check back after June 12.*
+**Verdict: FAILED.**
+
+SpaceX (SPCX) did list on Nasdaq on June 12, 2026 as predicted, pricing at $135/share. However, SPCE did not experience a >500% confusion/squeeze spike.
+
+Actual SPCE price action (source: stockanalysis.com):
+
+| Date | Open | High | Low | Close | Change |
+|------|------|------|-----|-------|--------|
+| Jun 4, 2026 | $4.20 | $5.18 | $4.06 | **$4.72** | +10.02% |
+| Jun 11, 2026 (regular) | $4.64 | $6.17 | $4.63 | $5.73 | +21.66% |
+| Jun 11, 2026 (after-hours) | — | **$6.54** | — | — | — |
+| **Jun 12, 2026** | **$4.96** | **$5.00** | **$3.56** | **$3.91** | **-31.76%** |
+
+For a >500% spike from the June 4 close, SPCE needed to trade at ≥$28.32. Its actual peak was **$6.54 in after-hours on June 11** — roughly +38.5% from the June 4 close and far short of the threshold. By June 12 regular hours it opened weakly and sold off, closing down nearly 32%.
+
+What actually happened: SPCE had already front-run the catalyst. It ran from ~$2.50 in mid-May to a high of $8.90 on June 1, then sold off hard into the IPO. By June 12, the speculative energy had already been exhausted; there was no second leg of confused retail buying. The ticker-confusion/squeeze thesis was directionally plausible but mistimed and dramatically overestimated in magnitude.
+
+The SPCX IPO itself performed strongly (opened well above $135), but the overflow did not land on SPCE.
